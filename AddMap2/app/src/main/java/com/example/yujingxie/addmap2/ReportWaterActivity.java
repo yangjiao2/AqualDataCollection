@@ -234,7 +234,7 @@ import java.text.SimpleDateFormat;
 
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-
+import com.parse.ParseCloud;
 
 public class ReportWaterActivity extends  AppCompatActivity{
     final Calendar myCalendar = Calendar.getInstance();
@@ -305,11 +305,36 @@ public class ReportWaterActivity extends  AppCompatActivity{
                                                 String description=editDescrp.getText().toString().trim();
                                                 if(!name.equals("") && !location.equals("") && !time.equals("") && !type.equals("") ){
 
-
+                                                    ParseObject report = new ParseObject("Report");
                                                     ParseUser currentUser = ParseUser.getCurrentUser();
-                                                    Report report = new Report(currentUser.getObjectId(), location, time, duration, type, description);
+                                                    report.put("user", currentUser.getObjectId());
+                                                    report.put("location", location);
+                                                    report.put("time", time);
+                                                    report.put("duration", duration);
+                                                    report.put("durationType", durationType1);
+                                                    report.put("type", type);
+                                                    report.put("description", description);
                                                     report.saveInBackground();
 
+
+                                                    final Map<String, Object> params = new HashMap<>();
+                                                    params.put("message", "We received report from" + location + ".");
+                                                    params.put("useMasterKey", true);
+
+                                                    ParseCloud.callFunctionInBackground("sendAnnouncement", params, new FunctionCallback<String>() {
+                                                        public void done(String result, ParseException e) {
+                                                            if (e == null) {
+                                                                Utils.d("ANNOUNCEMENT SUCCESS");
+                                                            } else {
+                                                                Utils.e("ANNOUNCEMENT FAILURE");
+                                                            }
+                                                        }
+                                                    });
+
+
+
+
+//
                                                     ContentValues content=new ContentValues();
                                                     content.put(DataHelper.KEY_NAME,name);
                                                     content.put(DataHelper.KEY_Location,location);

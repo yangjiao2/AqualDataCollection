@@ -7,6 +7,7 @@ import android.app.Application;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.interceptors.ParseLogInterceptor;
 import com.parse.ParseInstallation;
 import com.parse.PushService;
 import com.parse.SaveCallback;
@@ -14,14 +15,17 @@ import com.parse.SaveCallback;
 
 public class ParseApplication extends Application {
 
+    public static final String APP_ID = "aquascale";
+    public static final String SERVER = "https://aquascale.herokuapp.com/parse/";
     @Override
     public void onCreate() {
         super.onCreate();
         Parse.enableLocalDatastore(this);
-        ParseObject.registerSubclass(Report.class);
+//        ParseObject.registerSubclass(Report.class);
         Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
-                .applicationId("aquascale")
-                .server("https://aquascale.herokuapp.com/parse/")   // '/' important after 'parse'
+                .applicationId(APP_ID)
+                .server(SERVER)   // '/' important after 'parse'
+                .addNetworkInterceptor(new ParseLogInterceptor())
                 .build());
         ParseInstallation.getCurrentInstallation().saveInBackground();
         ParseUser.enableAutomaticUser();
@@ -32,6 +36,7 @@ public class ParseApplication extends Application {
         defaultACL.setPublicReadAccess(true);
 
         ParseACL.setDefaultACL(defaultACL, true);
+//        PushService.setDefaultPushCallback(this, ReportWaterActivity.class);
     }
 
 //    @Override

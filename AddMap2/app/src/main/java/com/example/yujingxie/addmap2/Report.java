@@ -98,20 +98,20 @@ import com.parse.ParseClassName;
 @ParseClassName("Report")
 
 public class Report extends ParseObject{
-    public Report(){
-        super();
-    }
+//    public Report(){
+//        super();
+//    }
 
-    public Report(String User, String Location, String Time, double Durantion, String Type, String Description) {
-        super();
-        // setName(Name);
-        setUser(User);
-        setLocation(Location);
-        setTime(Time);
-        setDurantion(Durantion);
-        setType(Type);
-        setDescription(Description);
-    }
+//    public Report(String User, String Location, String Time, double Durantion, String Type, String Description) {
+//        super();
+//        // setName(Name);
+//        setUser(User);
+//        setLocation(Location);
+//        setTime(Time);
+//        setDurantion(Durantion);
+//        setType(Type);
+//        setDescription(Description);
+//    }
 
     // Use getString and others to access fields
     public String getLocation() {
@@ -120,9 +120,10 @@ public class Report extends ParseObject{
     public String getTime() {
         return getString("time");
     }
-    public int getDuration() {
-        return getInt("duration");
+    public double getDuration() {
+        return getDouble("duration");
     }
+    public String getDurationType() {return getString("durationType");}
     public String getType() {
         return getString("type");
     }
@@ -136,8 +137,11 @@ public class Report extends ParseObject{
     public void setTime(String value) {
         put("time", value);
     }
-    public void setDurantion(double value) {
+    public void setDuration(double value) {
         put("duration", value);
+    }
+    public void setDurationType(String value)  {
+        put("durationType", value);
     }
     public void setType(String value) {
         put("type", value);

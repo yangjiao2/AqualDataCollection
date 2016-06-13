@@ -5,10 +5,10 @@
     <permission
         android:name="com.example.yujingxie.addmap2.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.yujingxie.addmap2.permission.C2D_MESSAGE" />
 
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="com.example.yujingxie.addmap2.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -19,8 +19,10 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -116,7 +118,7 @@
         <meta-data
             android:name="com.parse.push.gcm_sender_id"
             android:value="453646379048" />
-        ;
+        
         <activity android:name=".NaviActivity"></activity>
     </application>
 

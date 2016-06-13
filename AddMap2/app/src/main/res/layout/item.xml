@@ -16,15 +16,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="1dp"
         >
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/type"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/windowBackground"
             android:gravity="center_vertical"
             android:layout_alignParentTop="true"
             android:textSize="20sp"
+
             />
 
         <TextView
@@ -32,6 +35,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/location"
             android:layout_below="@+id/type"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
             />
 
         <TextView
@@ -39,6 +44,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/timeText"
             android:layout_below="@+id/location"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
             />
 
     </RelativeLayout>

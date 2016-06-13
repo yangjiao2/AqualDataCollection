@@ -16,5 +16,8 @@
     string in this file.
     -->
   <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyByqnlTEC-fnofMFbU8cCTLkxrpCeNfShw</string>-->
-  <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCUK9-7K_97al5LkTdNaz3Qz7gWyrmPHnk</string>
+  <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCUK9-7K_97al5LkTdNaz3Qz7gWyrmPHnk</string>-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAV9VTc8CbbE1QOI7zY-oz1HA2X3dsKFbw</string>
+
+
 </resources>

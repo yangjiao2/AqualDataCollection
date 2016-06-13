@@ -95,7 +95,9 @@ import com.example.yujingxie.addmap2.ReportClass;
 public class RecyclerViewActivity extends AppCompatActivity {
 
     private List<ReportClass> reports;
+    private List<ReportClass> reports1;
     private RecyclerView rv;
+//    private int i = 0;
 
     private int COUNT = 0;
     @Override
@@ -109,15 +111,53 @@ public class RecyclerViewActivity extends AppCompatActivity {
         rv.setHasFixedSize(true);
 
         initializeData();
-        initializeAdapter();
+        initializeAdapter(reports);
+
     }
 
     private void initializeData(){
         reports = new ArrayList<ReportClass>();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Report");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    for (ParseObject Areport : objects) {
+                        reports.add(new ReportClass("UCI", "01:04AM", "Medium"));
+                    }
+                }
+            }
+        });
+
         reports.add(new ReportClass("DBH", "3:33AM","Medium"));
         reports.add(new ReportClass("MSTB", "12:05PM", "Serious"));
         reports.add(new ReportClass("UCI", "01:04AM", "Medium"));
-        reports.add(new ReportClass("UTC plaza", "05:25PM", "Medium"));
+////        reports.add(new ReportClass("UTC plaza", "05:25PM", "Medium"));
+//
+//        reports1 = new ArrayList<ReportClass>();
+//        ParseQuery<Report> query = ParseQuery.getQuery("Report");
+//        // Configure limit and sort order
+////        query.whereEqualTo("user", ParseUser.getCurrentUser());
+////        query.setLimit(3);
+//        query.orderByAscending("createdAt");
+//        // Execute query to fetch all messages from Parse asynchronously
+//        // This is equivalent to a SELECT query with SQL
+//        reports1.add(new ReportClass("UCI2", "01:04AM", "Medium"));
+//        query.findInBackground(new FindCallback<Report>() {
+//            public void done(List<Report> reportlst, ParseException e) {
+//                if (e == null) {
+//
+//                    for (Report areport : reportlst) {
+////                        i = i + 1;
+//                        reports1.add(new ReportClass("UCI", "01:04AM", "Medium"));
+//                        reports1.add(new ReportClass(areport.getLocation(), areport.getTime(), areport.getType()));
+//                    }
+//                }
+//            }
+
+//        });
+//        reports = reports1;
+//        int a = i;
+
 //        reports.add(new Report("Langson","15:20PM",1.5,"High","Restroom"));
 //        reports.add(new Report("MSTB","2:10PM",2.0,"Medium","2 floor"));
 //        ParseUser pu = ParseUser.getCurrentUser();
@@ -157,8 +197,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
 //        });
     }
 
-    private void initializeAdapter(){
-        RVAdapter adapter = new RVAdapter(reports);
+    private void initializeAdapter(List<ReportClass> reports12){
+        RVAdapter adapter = new RVAdapter(reports12);
         rv.setAdapter(adapter);
     }
 }
